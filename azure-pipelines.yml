@@ -14,8 +14,8 @@ pool:
 
 variables:
   buildConfiguration: 'Release'
-  dotnetVersion: '10.x'
-  projectPath: 'DemoAzApp/DemoAzApp.csproj'
+  dotnetVersion: '8.x'
+  projectPath: 'FunctionApp/FunctionApp.csproj'
 
 stages:
 
