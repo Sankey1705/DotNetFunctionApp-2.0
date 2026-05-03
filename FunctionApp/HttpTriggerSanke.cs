@@ -15,9 +15,20 @@ public class HttpTriggerSanke
     }
 
     [Function("HttpTriggerSanke")]
-    public IActionResult Run([HttpTrigger(AuthorizationLevel.Anonymous, "get", "post")] HttpRequest req)
+    public IActionResult Run(
+        [HttpTrigger(AuthorizationLevel.Anonymous, "get", "post")] HttpRequest req)
     {
-        _logger.LogInformation("C# HTTP trigger function processed a request.");
-        return new OkObjectResult("Welcome to Azure Functions!");
+        _logger.LogInformation("Triggered - Author: Sanke Wadbudhe");
+
+        var name = req.Query["name"].ToString();
+        if (string.IsNullOrEmpty(name)) name = "World";
+
+        return new OkObjectResult(new
+        {
+            message   = $"Hello, {name}! This is Sanke Wadbudhe's Azure Function.",
+            author    = "Sanke Wadbudhe",
+            timestamp = DateTime.UtcNow.ToString("o"),
+            status    = "success"
+        });
     }
 }
